@@ -53,8 +53,8 @@ class _DndHomePageState extends State<DndHomePage> {
   Future<void> _toggleDndMode() async {
     // First, check for permission, as this is a prerequisite and can't be optimistic.
     try {
-      final bool hasAccess =
-          await _dndPlugin.isNotificationPolicyAccessGranted();
+      final bool hasAccess = await _dndPlugin
+          .isNotificationPolicyAccessGranted();
 
       if (!hasAccess) {
         await _dndPlugin.openNotificationPolicyAccessSettings();
@@ -99,9 +99,7 @@ class _DndHomePageState extends State<DndHomePage> {
       // Optionally, show a message to the user
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Failed to change DND mode.'),
-          ),
+          const SnackBar(content: Text('Failed to change DND mode.')),
         );
       }
     }
@@ -121,7 +119,10 @@ class _DndHomePageState extends State<DndHomePage> {
             const SizedBox(width: 8),
             const Text(
               'Do Not Disturb',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
@@ -160,17 +161,18 @@ class _DndHomePageState extends State<DndHomePage> {
                   'DND Status: ${_isDndEnabled ? 'Enabled' : 'Disabled'}',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
                 const SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: _toggleDndMode,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    foregroundColor:
-                        _isDndEnabled ? Colors.redAccent : Colors.blueAccent,
+                    foregroundColor: _isDndEnabled
+                        ? Colors.redAccent
+                        : Colors.blueAccent,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -180,7 +182,9 @@ class _DndHomePageState extends State<DndHomePage> {
                   child: Text(
                     _isDndEnabled ? 'Turn DND Off' : 'Turn DND On',
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
